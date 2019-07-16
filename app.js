@@ -61,5 +61,5 @@ function messageReceived(data){
 	}	
 }
 
-httpServer.listen(5001, httpServerConnected);
+httpServer.listen(5002, httpServerConnected);
 ioServer.on('connection', ioServerConnected);
