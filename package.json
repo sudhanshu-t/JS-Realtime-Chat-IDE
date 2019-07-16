@@ -1,0 +1,25 @@
+{
+  "name": "js-realtime-chat-ide",
+  "version": "1.0.0",
+  "description": "Realtime chat application for code syncing & doubt clearance through chat screen.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/21sudhanshu/JS-Realtime-Chat-IDE.git"
+  },
+  "author": "Sudhanshu Tiwari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/21sudhanshu/JS-Realtime-Chat-IDE/issues"
+  },
+  "homepage": "https://github.com/21sudhanshu/JS-Realtime-Chat-IDE#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "jquery": "^3.4.1",
+    "socket.io": "^2.2.0"
+  }
+}
