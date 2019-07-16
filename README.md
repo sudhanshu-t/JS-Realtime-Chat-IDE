@@ -2,7 +2,7 @@
 
 # Application Features
 
-This project provides the feature of online chat & code correction support to the students studyinh in various bootcamps and online courses where teaching assistants cannot be physically there to help the students.
+This project provides the feature of online chat & code correction support to the students studying in various bootcamps and online courses where teaching assistants cannot be physically there to help the students.
 
 **The application features 3 main functionalities:**
 
