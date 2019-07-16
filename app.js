@@ -1,5 +1,3 @@
-// Server Side JS
-
 var express = require('express');
 var http = require('http');
 var socketIo = require('socket.io');
@@ -58,5 +56,5 @@ function messageReceived(data){
 	}	
 }
 
-httpServer.listen(8000, httpServerConnected);
+httpServer.listen(5000, httpServerConnected);
 ioServer.on('connection', ioServerConnected);
