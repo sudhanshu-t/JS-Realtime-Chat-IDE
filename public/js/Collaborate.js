@@ -29,6 +29,7 @@ $(document).ready(function () {
 		//socket.emit('user-joined', currentUser);
 	}
 
+    // Done
 	function loginUser(event) {
 		event.preventDefault();
 
@@ -44,6 +45,7 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function userJoined(allUsers) {
 		for (i = 0; i < allUsers.length; i++) {
 			var otherUser = allUsers[i];
@@ -71,12 +73,13 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function initCanvas(containerId, otherUser) {
-		canvas = $(containerId).find('.whiteboard')[0];
+		canvas = $(containerId).find('.whiteboard')[0]; // Why 1st element is taken?
 		colors = $(containerId).find('.color');
 		pensize = $(containerId).find('.pensize');
 		rubber = $(containerId).find('.rubber')[0];
-		context = canvas.getContext('2d');
+		context = canvas.getContext('2d'); // Actual meaning of context?
 
 		whiteBoards[otherUser] = {
 			context: context,
@@ -108,6 +111,7 @@ $(document).ready(function () {
 		onResize();
 	}
 
+    // Done
 	function userLeft(otherUser) {
 		$('div[user=' + otherUser + ']').remove();
 		$('li[username=' + otherUser + ']').remove();
@@ -115,6 +119,7 @@ $(document).ready(function () {
 		delete whiteBoards[otherUser];
 	}
 
+    // Done
 	function messageReceived(data) {
 		switch (data.messageType) {
 			case "chat":
@@ -140,6 +145,7 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function chatMessageReceived(data) {
 		var $parentDiv, $li;
 
@@ -155,6 +161,7 @@ $(document).ready(function () {
 		$parentDiv.find('span[purpose=activity]').html("Chat");
 	}
 
+    // Done
 	function controlMessageReceived(data) {
 		var $parentDiv, otherUser;
 
@@ -173,6 +180,7 @@ $(document).ready(function () {
 		$parentDiv.find('span[purpose=activity]').html("Control");
 	}
 
+    // Done
 	function releaseMessageReceived(data) {
 		var $parentDiv, otherUser;
 
@@ -191,6 +199,7 @@ $(document).ready(function () {
 		$parentDiv.find('span[purpose=activity]').html("Release");
 	}
 
+    // Done
 	function editorMessageReceived(data) {
 		var $parentDiv, otherUser;
 
@@ -210,6 +219,7 @@ $(document).ready(function () {
 		$parentDiv.find('span[purpose=activity]').html("Editor");
 	}
 
+    // Done
 	function drawingDataReceived(data) {
 		var otherUser;
 
@@ -235,10 +245,8 @@ $(document).ready(function () {
 		otherContext.closePath();
 	}
 
-
-
-
-	function sendChatMessage() {
+    // Done
+    function sendChatMessage() {
 		if (window.event.which === 13) {
 			var otherUser = $('div.big span[purpose=user-name]').html();
 
@@ -259,12 +267,13 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function sendControlMessage() {
 		var otherUser = $('div.big span[purpose=user-name]').html();
 
 		$('div.big span[purpose=controlled-by]').html(currentUser);
-		editors[otherUser].setReadOnly(false);
-		whiteBoards[otherUser].isDisabled = false;
+		editors[otherUser].setReadOnly(false); // Why other user's setReadOnly is set false?
+		whiteBoards[otherUser].isDisabled = false; // ,,
 		$('div.big [action=control]').attr('disabled', 'disabled');
 		$('div.big [action=release]').removeAttr('disabled');
 
@@ -277,6 +286,7 @@ $(document).ready(function () {
 		return false;
 	}
 
+    // Done
 	function sendReleaseMessage() {
 		var otherUser = $('div.big span[purpose=user-name]').html();
 
@@ -295,6 +305,7 @@ $(document).ready(function () {
 		return false;
 	}
 
+    // DOUBT in this function =====================
 	function sendEditorMessage(e) {
 		var otherUser = $('div.big span[purpose=user-name]').html();
 
@@ -310,6 +321,7 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function showUser() {
 		var userName = $(this).attr('userName');
 		if (userName) {
@@ -323,12 +335,14 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function dismissUser() {
-		$(this).closest('div[user]').removeClass('big');
+		$(this).closest('div[user]').removeClass('big'); // Closest ?
 		$onlineUsers.show();
 		return false;
 	}
 
+    // Done
 	//message related to drawing
 	function drawLine(x0, y0, x1, y1, emit) {
 		var otherUser = $('div.big span[purpose=user-name]').html();
@@ -349,9 +363,9 @@ $(document).ready(function () {
 		context.stroke();
 		context.closePath();
 
-		if (!emit) {
-			return;
-		}
+		// if (!emit) {
+		// 	return;
+		// }
 		//var w = canvas.width;
 		//var h = canvas.height;
 
@@ -363,7 +377,7 @@ $(document).ready(function () {
 			color: current.color,
 			pensize: current.pensize
 		};
-		var otherUser = $('div.big span[purpose=user-name]').html();
+		var otherUser = $('div.big span[purpose=user-name]').html(); // What does this line do?
 
 
 		socket.emit('message', {
@@ -374,37 +388,42 @@ $(document).ready(function () {
 		});
 	}
 
+    // Done
 	function onMouseDown(e) {
 
 		offsetX = e.target.offsetLeft + e.offsetX;
 		offsetY = e.target.offsetTop + e.offsetY;
 
 		drawing = true;
-		current.x = (e.clientX || (e.touches[0] && e.touches[0].clientX));
+		current.x = (e.clientX || (e.touches[0] && e.touches[0].clientX)); // What are these?
 		current.y = (e.clientY || (e.touches[0] || e.touches[0].clientY));
 	}
 
+    // Done
 	function onMouseUp(e) {
 		if (!drawing) {
 			return;
 		}
 		drawing = false;
-		drawLine(current.x, current.y, e.clientX || (e.touches[0] && e.touches[0].clientX), e.clientY || (e.touches[0] && e.touches[0].clientY), true);
+		drawLine(current.x, current.y, e.clientX || (e.touches[0] && e.touches[0].clientX), e.clientY || (e.touches[0] && e.touches[0].clientY), true); // Doubt in client params
 	}
 
+    // Done
 	function onMouseMove(e) {
 		if (!drawing) {
 			return;
 		}
-		drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, true);
+		drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, true); // Doubt in client params
 		current.x = e.clientX || (e.touches[0] && e.touches[0].clientX);
 		current.y = e.clientY || (e.touches[0] && e.touches[0].clientY);
 	}
 
+    // Done
 	function onColorUpdate(e) {
 		current.color = e.target.className.split(' ')[2];
 	}
 
+    // Done
 	function onPenSizeUpdate(e) {
 		current.pensize = e.target.className.split(' ')[2];
 	}
@@ -422,6 +441,7 @@ $(document).ready(function () {
 		};
 	}
 
+    // Done
 	function clearCanvas() {
 
 		var otherUser = $('div.big span[purpose=user-name]').html();
@@ -440,6 +460,7 @@ $(document).ready(function () {
 		}
 	}
 
+    // Done
 	function clearDrawingReceived(data) {
 		var otherUser;
 
@@ -460,8 +481,7 @@ $(document).ready(function () {
 		canvas.height = 487;
 	}
 
-
-
+    // Done
 	// define Init
 	function Init() {
 		socket = io();

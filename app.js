@@ -9,10 +9,12 @@ var allSockets = {};
 
 app.use(express.static(__dirname + '/public'));
 
+// Done
 function httpServerConnected(){
 	console.log('Http Server started');
 }
 
+// Done
 function ioServerConnected(socket){
 	console.log('A new socket connection');
 
@@ -21,6 +23,7 @@ function ioServerConnected(socket){
 	socket.on('message', messageReceived);	
 }
 
+// Done
 function userJoined(user){
 	console.log(user + ' joined.');
 
@@ -29,6 +32,7 @@ function userJoined(user){
 	ioServer.emit('user-joined', allUsers);	
 }
 
+// Done
 function userLeft(){
 	var user = null;
 	var allKeys = Object.keys(allSockets);
@@ -45,6 +49,7 @@ function userLeft(){
     this.broadcast.emit('user-left', user);	
 }
 
+// Done
 function messageReceived(data){
 	console.log(data);
 
