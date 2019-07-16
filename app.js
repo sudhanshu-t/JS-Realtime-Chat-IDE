@@ -1,3 +1,5 @@
+// Server Side JS
+
 var express = require('express');
 var http = require('http');
 var socketIo = require('socket.io');
