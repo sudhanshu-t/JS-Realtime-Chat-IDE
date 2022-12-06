@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/21sudhanshu/JS-Realtime-Chat-IDE#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "http": "0.0.0",
     "jquery": "^3.4.1",
     "socket.io": "^2.2.0"
